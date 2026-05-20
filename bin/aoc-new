@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# Scaffold the solution file for one Advent of Code day, then rebuild Aoc.lean.
+# Usage: bin/aoc-new YEAR DAY
+set -euo pipefail
+
+if [[ $# -ne 2 ]]; then
+  echo "usage: $(basename "$0") YEAR DAY" >&2
+  exit 2
+fi
+
+root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+year="$1"
+day="$(printf '%02d' "$((10#$2))")"
+dir="$root/Aoc/Y$year"
+file="$dir/Day$day.lean"
+
+mkdir -p "$dir"
+if [[ -e "$file" ]]; then
+  echo "skip:   Aoc/Y$year/Day$day.lean"
+else
+  cat > "$file" <<LEAN
+import Aoc.Core
+
+namespace Aoc.Y$year.Day$day
+
+def part1 (input : String) : String :=
+  s!"unsolved: {(lines input).length} lines of input"
+
+def part2 (input : String) : String :=
+  s!"unsolved: {(lines input).length} lines of input"
+
+end Aoc.Y$year.Day$day
+LEAN
+  echo "create: Aoc/Y$year/Day$day.lean"
+fi
+
+exec "$root/bin/aoc-sync"

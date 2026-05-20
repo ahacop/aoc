@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Print the year and day of the newest solution file, as `YEAR DAY` on stdout.
+# Both the year directory and the day file are zero padded, so the plain sort
+# below puts the newest last.
+set -euo pipefail
+
+root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$root"
+
+newest="$(find Aoc -mindepth 2 -name 'Day*.lean' | sort | tail -1)"
+
+if [[ -z "$newest" ]]; then
+  echo "aoc-latest: no solution files under Aoc/" >&2
+  exit 1
+fi
+
+path="${newest#Aoc/}"      # Y2015/Day01.lean
+path="${path%.lean}"       # Y2015/Day01
+ydir="${path%%/*}"         # Y2015
+dfile="${path##*/}"        # Day01
+
+echo "$((10#${ydir#Y})) $((10#${dfile#Day}))"

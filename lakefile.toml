@@ -1,0 +1,9 @@
+name = "aoc"
+defaultTargets = ["solve"]
+
+[[lean_lib]]
+name = "Aoc"
+
+[[lean_exe]]
+name = "solve"
+root = "Main"

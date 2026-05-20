@@ -37,12 +37,17 @@
         default = pkgs.mkShell {
           packages = with pkgs; [
             pkgs."ruby-4.0.4"
-            bundler
             gnumake
             libyaml
             openssl
             pkg-config
           ];
+
+          shellHook = ''
+            export BUNDLE_GEMFILE="$PWD/Gemfile"
+            export RUBYOPT="-rbundler/setup"
+            export PATH="$PWD/bin:$PATH"
+          '';
         };
       });
 

@@ -1,0 +1,5 @@
+/.bundle/
+/bin/ruby-lsp
+/bin/ruby-lsp-check
+/bin/ruby-lsp-launcher
+/bin/ruby-lsp-test-exec

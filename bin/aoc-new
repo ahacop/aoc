@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+# Scaffold solution files for a given AoC day.
+# Usage: bin/aoc-new YEAR DAY
+
+require "fileutils"
+
+year, day = ARGV
+abort "usage: #{$PROGRAM_NAME} YEAR DAY" unless year && day
+
+day_padded = format("%02d", Integer(day))
+dir = File.expand_path("../solutions/#{year}", __dir__)
+FileUtils.mkdir_p(dir)
+
+template = <<~RUBY
+  input = $stdin.read
+
+  puts
+RUBY
+
+[1, 2].each do |part|
+  path = "#{dir}/day#{day_padded}_part#{part}.rb"
+  if File.exist?(path)
+    puts "skip:   #{path}"
+  else
+    File.write(path, template)
+    puts "create: #{path}"
+  end
+end

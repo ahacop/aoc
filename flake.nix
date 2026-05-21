@@ -45,7 +45,6 @@
 
           shellHook = ''
             export BUNDLE_GEMFILE="$PWD/Gemfile"
-            export RUBYOPT="-rbundler/setup"
             export PATH="$PWD/bin:$PATH"
           '';
         };

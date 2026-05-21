@@ -12,9 +12,9 @@ dir = File.expand_path("../solutions/#{year}", __dir__)
 FileUtils.mkdir_p(dir)
 
 template = <<~RUBY
-  input = $stdin.read
+  require_relative "../../lib/aoc"
 
-  puts
+  input = read_aoc_input
 RUBY
 
 [1, 2].each do |part|

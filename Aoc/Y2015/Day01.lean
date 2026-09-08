@@ -14,12 +14,10 @@ def part1 (input : String) : String :=
 def findBasement
   (xs : Array Char) : Int := Id.run do
   let mut currentFloor := 0
-  let mut index := 0
   for h : i in [0:xs.size] do
-    index := i
     currentFloor := g f xs[i] currentFloor
-    if currentFloor = -1 then break
-  return index + 1
+    if currentFloor = -1 then return i + 1
+  return 0
 
 def part2 (input : String) : String :=
   s!"{(findBasement input.toList.toArray)}"

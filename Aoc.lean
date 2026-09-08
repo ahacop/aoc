@@ -5,12 +5,15 @@
 -- file imports each day and names its two parts.
 import Aoc.Core
 import Aoc.Y2015.Day01
+import Aoc.Y2016.Day01
 
 namespace Aoc
 
 def solutions : List Entry := [
   { year := 2015, day := 1, part := 1, solve := Y2015.Day01.part1 },
-  { year := 2015, day := 1, part := 2, solve := Y2015.Day01.part2 }
+  { year := 2015, day := 1, part := 2, solve := Y2015.Day01.part2 },
+  { year := 2016, day := 1, part := 1, solve := Y2016.Day01.part1 },
+  { year := 2016, day := 1, part := 2, solve := Y2016.Day01.part2 }
 ]
 
 end Aoc

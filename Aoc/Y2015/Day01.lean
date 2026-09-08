@@ -5,10 +5,23 @@ namespace Aoc.Y2015.Day01
 def f (x : Char) : Int :=
   if x == '(' then 1 else -1
 
+def g (h : (Char -> Int)) (c : Char) (x : Int) : Int :=
+  h c + x
+
 def part1 (input : String) : String :=
   s!"{((input.toList.map f).sum)}"
 
+def findBasement
+  (xs : Array Char) : Int := Id.run do
+  let mut currentFloor := 0
+  let mut index := 0
+  for h : i in [0:xs.size] do
+    index := i
+    currentFloor := g f xs[i] currentFloor
+    if currentFloor = -1 then break
+  return index + 1
+
 def part2 (input : String) : String :=
-  s!"unsolved: {(lines input).length} lines of input"
+  s!"{(findBasement input.toList.toArray)}"
 
 end Aoc.Y2015.Day01

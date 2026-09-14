@@ -1,7 +1,8 @@
 namespace Aoc
 
-/-- A solution reads the whole puzzle input and returns the answer to print. -/
-abbrev Solver := String → String
+/-- A solution reads the puzzle input and returns the answer to print.
+Input that the solution cannot use gives `.error` with an error message. -/
+abbrev Solver := String -> Except String String
 
 /-- One part of one puzzle, together with the year and day it belongs to.
 `Aoc.solutions` holds one of these per part, and `solve` looks up the answer

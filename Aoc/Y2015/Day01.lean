@@ -2,21 +2,34 @@ import Aoc.Core
 
 namespace Aoc.Y2015.Day01
 
-def f (x : Char) : Int :=
-  if x == '(' then 1 else -1
+def parseStep (x : Char) : Except String Int :=
+  match x with
+  | '(' => pure 1
+  | ')' => pure (-1)
+  | _ => throw s!"expected ( or ), found {x.quote}"
 
-def part1 (input : String) : String :=
-  s!"{((input.toList.map f).sum)}"
+def parse (input : String) : Except String (Array Int) :=
+  input.trimAscii.toString.toList.toArray.mapM parseStep
 
-def findBasement
-  (xs : Array Char) : Int := Id.run do
+def part1 (input : String) : Except String String := do
+  let steps <- parse input
+  pure s!"{steps.foldl (· + ·) 0}"
+
+def findBasement (steps : Array Int) : Except String Nat := do
   let mut currentFloor := 0
-  for h : i in [0:xs.size] do
-    currentFloor := currentFloor + f xs[i]
+  for h : i in [0:steps.size] do
+    currentFloor := currentFloor + steps[i]
     if currentFloor = -1 then return i + 1
-  return 0
+  throw "Santa never enters the basement"
 
-def part2 (input : String) : String :=
-  s!"{(findBasement input.toList.toArray)}"
+def part2 (input : String) : Except String String := do
+  let steps <- parse input
+  pure s!"{<- findBasement steps}"
+
+#guard part1 "(())" matches .ok "0"
+#guard part1 ")())())" matches .ok "-3"
+#guard part2 "()())" matches .ok "5"
+#guard part1 "(x)" matches .error _
+#guard part2 "((" matches .error _
 
 end Aoc.Y2015.Day01

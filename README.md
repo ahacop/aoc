@@ -12,8 +12,10 @@ Aoc.lean               generated: the list of every part solve can run
 Main.lean              the solve executable
 ```
 
-A part has the type `String → String`. It takes the whole puzzle input and
-returns the answer to print.
+A part has the type `String -> Except String String`. It takes the whole puzzle
+input and returns the answer to print. If the input is not in the form the
+puzzle promises, the part returns `.error` with a message, and `solve` prints
+that message on stderr and exits with code 3.
 
 Every solution lives in one executable, `solve`. It takes the year, day and
 part as arguments, reads the input on stdin, and prints the answer on stdout.

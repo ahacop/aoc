@@ -23,11 +23,11 @@ import Aoc.Core
 
 namespace Aoc.Y$year.Day$day
 
-def part1 (input : String) : String :=
-  s!"unsolved: {(lines input).length} lines of input"
+def part1 (_input : String) : Except String String :=
+  pure ""
 
-def part2 (input : String) : String :=
-  s!"unsolved: {(lines input).length} lines of input"
+def part2 (_input : String) : Except String String :=
+  pure ""
 
 end Aoc.Y$year.Day$day
 LEAN

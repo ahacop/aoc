@@ -71,7 +71,7 @@ def parseInstruction (s : String) : Except String Instruction := do
   pure { rotation, numberOfBlocks }
 
 def parse (input : String) : Except String (List Instruction) :=
-  input.trimAscii.toString.splitOn ", " |>.mapM parseInstruction
+  input.splitOn ", " |>.mapM parseInstruction
 
 def calcDistance (p : Point) (q : Point) : Nat :=
   (p.x - q.x).natAbs + (p.y - q.y).natAbs

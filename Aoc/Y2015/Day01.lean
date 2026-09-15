@@ -9,7 +9,7 @@ def parseStep (x : Char) : Except String Int :=
   | _ => throw s!"expected ( or ), found {x.quote}"
 
 def parse (input : String) : Except String (Array Int) :=
-  input.trimAscii.toString.toList.toArray.mapM parseStep
+  input.toList.toArray.mapM parseStep
 
 def part1 (input : String) : Except String String := do
   let steps <- parse input

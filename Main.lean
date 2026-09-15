@@ -5,7 +5,10 @@ open Aoc
 /-- Read the puzzle input on stdin, print the answer on stdout.
 
 One executable holds every solution. The year, day and part arrive as
-arguments and pick an entry out of `Aoc.solutions`. Exit code 1 means no
+arguments and pick an entry out of `Aoc.solutions`. Advent of Code ends
+every input with a newline. That one newline is removed before the solution
+sees the input. Other whitespace stays, because some puzzles start a line
+with spaces that matter. Exit code 1 means no
 solution is registered for those numbers, 2 means the arguments are not
 three numbers, and 3 means the solution rejected the input. -/
 def main (args : List String) : IO UInt32 := do
@@ -13,7 +16,8 @@ def main (args : List String) : IO UInt32 := do
   | some [year, day, part] =>
     match solutions.find? fun e => e.year == year && e.day == day && e.part == part with
     | some entry =>
-      let input ← (← IO.getStdin).readToEnd
+      let raw ← (← IO.getStdin).readToEnd
+      let input := if raw.endsWith "\n" then (raw.dropEnd 1).toString else raw
       match entry.solve input with
       | .ok answer =>
         IO.println answer

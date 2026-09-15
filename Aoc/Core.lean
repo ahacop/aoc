@@ -13,11 +13,9 @@ structure Entry where
   part : Nat
   solve : Solver
 
-/-- The input split into lines. Advent of Code ends every input with a
-newline, which would otherwise give an empty final line. Only that one
-newline is removed, so a line that really does end in spaces keeps them. -/
+/-- The input split into lines. `main` removes the final newline of the
+input, so the last line is not empty. -/
 def lines (input : String) : List String :=
-  let body := if input.endsWith "\n" then (input.dropEnd 1).toString else input
-  body.splitOn "\n"
+  input.splitOn "\n"
 
 end Aoc

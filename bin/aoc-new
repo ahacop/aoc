@@ -29,6 +29,9 @@ def part1 (_input : String) : Except String String :=
 def part2 (_input : String) : Except String String :=
   pure ""
 
+#guard part1 "" matches .ok ""
+#guard part2 "" matches .ok ""
+
 end Aoc.Y$year.Day$day
 LEAN
   echo "create: Aoc/Y$year/Day$day.lean"

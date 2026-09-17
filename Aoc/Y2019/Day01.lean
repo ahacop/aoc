@@ -2,35 +2,36 @@ import Aoc.Core
 
 namespace Aoc.Y2019.Day01
 
-def parseNat (s : String) : Option Nat :=
-  s.toNat?
+def parse (input : String) : Except String (List Nat) :=
+  lines input |>.mapM fun l =>
+    match l.toNat? with
+    | some n => .ok n
+    | none => .error s!"not a number: {l}"
 
 def calculate (n : Nat) : Nat := (n / 3) - 2
 
 def part1 (input : String) : Except String String := do
-  let some xs := lines input |>.mapM parseNat
-    |>.map (·.map calculate) | throw "e"
-
-  pure s!"{xs.sum}"
+  let xs ← parse input
+  pure s!"{(xs.map calculate).sum}"
 
 def calc2 (x : Nat) (xs : List Nat) : List Nat :=
   let val : Nat := (x / 3) - 2
-  if val = 0 then xs else calc2 val (xs.concat val)
+  if val = 0 then xs else calc2 val (val :: xs)
 
 def part2 (input : String) : Except String String := do
-  let some xs := lines input |>.mapM parseNat
-    |>.map (fun x => x.map (fun y => calc2 y [])) | throw "e"
-
-  let result : Nat := xs.foldl (· + ·.sum) 0
-  pure s!"{result}"
+  let xs ← parse input
+  pure s!"{(xs.flatMap (calc2 · [])).sum}"
 
 #guard part1 "12" matches .ok "2"
 #guard part1 "14" matches .ok "2"
 #guard part1 "1969" matches .ok "654"
 #guard part1 "100756" matches .ok "33583"
+#guard part1 "12\n14\n1969\n100756" matches .ok "34241"
+#guard part1 "x" matches .error _
 
 #guard part2 "14" matches .ok "2"
 #guard part2 "1969" matches .ok "966"
 #guard part2 "100756" matches .ok "50346"
+#guard part2 "14\n1969\n100756" matches .ok "51314"
 
 end Aoc.Y2019.Day01

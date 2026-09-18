@@ -18,4 +18,8 @@ input, so the last line is not empty. -/
 def lines (input : String) : List String :=
   input.splitOn "\n"
 
+def parseLines (f : String -> Option α) (input : String) : Except String (List α) :=
+  lines input |>.mapM fun l =>
+    (f l).getDM (throw s!"cannot parse line {l.quote}")
+
 end Aoc

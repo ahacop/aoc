@@ -3,10 +3,7 @@ import Aoc.Core
 namespace Aoc.Y2020.Day01
 
 def parse (input : String) : Except String (List Nat) :=
-  lines input |>.mapM fun l =>
-    match l.toNat? with
-      | some n => pure n
-      | none => throw s!"parse error at {l}"
+  parseLines String.toNat? input
 
 def part1 (input : String) : Except String String := do
   let expenses <- parse input

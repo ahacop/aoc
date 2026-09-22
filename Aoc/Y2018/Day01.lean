@@ -12,11 +12,11 @@ def parseInt (x : String) : Option Int :=
 #guard parseInt "x" matches .none
 
 def part1 (input : String) : Except String String := do
-  let some xs := lines input |>.mapM parseInt | throw "e"
+  let xs <- parseLines parseInt input
   pure s!"{xs.sum}"
 
 def part2 (input : String) : Except String String := do
-  let some xs := lines input |>.mapM parseInt | throw "e"
+  let xs <- parseLines parseInt input
   let mut freq := 0
   let mut visited : HashSet Int := {0}
 

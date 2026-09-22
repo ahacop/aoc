@@ -3,10 +3,7 @@ import Aoc.Core
 namespace Aoc.Y2019.Day01
 
 def parse (input : String) : Except String (List Nat) :=
-  lines input |>.mapM fun l =>
-    match l.toNat? with
-    | some n => .ok n
-    | none => .error s!"not a number: {l}"
+  parseLines String.toNat? input
 
 def calculate (n : Nat) : Nat := (n / 3) - 2
 

@@ -35,4 +35,11 @@ def parseLines (f : String -> Option α) (input : String) : Except String (List 
 #guard parseLines String.toNat? "1\nx" matches .error _
 #guard parseLines String.toNat? "" matches .error _
 
+/-- The input as one natural number per line. -/
+def parseNats (input : String) : Except String (List Nat) :=
+  parseLines String.toNat? input
+
+#guard parseNats "1\n22\n333" matches .ok [1, 22, 333]
+#guard parseNats "1\n-2" matches .error _
+
 end Aoc

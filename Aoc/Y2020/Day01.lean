@@ -2,18 +2,15 @@ import Aoc.Core
 
 namespace Aoc.Y2020.Day01
 
-def parse (input : String) : Except String (List Nat) :=
-  parseLines String.toNat? input
-
 def part1 (input : String) : Except String String := do
-  let expenses <- parse input
+  let expenses <- parseNats input
   for x in expenses do
     for y in expenses do
       if 2020 == x + y then return s!"{x * y}"
   throw s!"could not find pair"
 
 def part2 (input : String) : Except String String := do
-  let expenses <- parse input
+  let expenses <- parseNats input
   for x in expenses do
     for y in expenses do
       for z in expenses do

@@ -2,13 +2,10 @@ import Aoc.Core
 
 namespace Aoc.Y2019.Day01
 
-def parse (input : String) : Except String (List Nat) :=
-  parseLines String.toNat? input
-
 def calculate (n : Nat) : Nat := (n / 3) - 2
 
 def part1 (input : String) : Except String String := do
-  let xs ← parse input
+  let xs ← parseNats input
   pure s!"{(xs.map calculate).sum}"
 
 def calc2 (x : Nat) (xs : List Nat) : List Nat :=
@@ -16,7 +13,7 @@ def calc2 (x : Nat) (xs : List Nat) : List Nat :=
   if val = 0 then xs else calc2 val (val :: xs)
 
 def part2 (input : String) : Except String String := do
-  let xs ← parse input
+  let xs ← parseNats input
   pure s!"{(xs.flatMap (calc2 · [])).sum}"
 
 #guard part1 "12" matches .ok "2"

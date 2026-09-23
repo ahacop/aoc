@@ -1,3 +1,7 @@
+import Std.Internal.Parsec
+
+open Std.Internal.Parsec String
+
 namespace Aoc
 
 /-- A solution reads the puzzle input and returns the answer to print.

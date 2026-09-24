@@ -8,7 +8,7 @@ def parseStep (x : Char) : Except String Nat :=
     | none => throw s!"{x.quote} is not a Nat"
 
 def parse (input : String) : Except String (List Nat) :=
-  input.toList.mapM parseStep
+  input.trimAsciiEnd.toString.toList.mapM parseStep
 
 def sumMatches (xs : List Nat) (offset : Nat) : Nat :=
   xs.zip (xs.rotateLeft offset)

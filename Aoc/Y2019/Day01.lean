@@ -21,7 +21,8 @@ def part2 (input : String) : Except String String := do
 #guard part1 "1969" matches .ok "654"
 #guard part1 "100756" matches .ok "33583"
 #guard part1 "12\n14\n1969\n100756" matches .ok "34241"
-#guard part1 "x" matches .error _
+#guard part1 "12\n14\n1969\n100756\n" matches .ok "34241"
+#guard part1 "x"matches .error _
 
 #guard part2 "14" matches .ok "2"
 #guard part2 "1969" matches .ok "966"

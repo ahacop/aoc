@@ -17,16 +17,19 @@ structure Entry where
   part : Nat
   solve : Solver
 
-/-- The input split into lines. `main` removes the final newline of the
-input, so the last line is not empty. Empty input gives `.error`, because
-`"".splitOn "\n"` returns `[""]`. -/
+/-- The input split into lines. The final newline of the input does not make
+an empty last line. Empty input gives `.error`, because `"".splitOn "\n"`
+returns `[""]`. -/
 def lines (input : String) : Except String (List String) :=
+  let input := if input.endsWith "\n" then (input.dropEnd 1).toString else input
   match input.splitOn "\n" with
   | [""] => throw "empty input"
   | ls => pure ls
 
 #guard lines "" matches .error _
+#guard lines "\n" matches .error _
 #guard lines "a" matches .ok ["a"]
+#guard lines "a\n" matches .ok ["a"]
 #guard lines "a\n\nb" matches .ok ["a", "", "b"]
 
 /-- The input split into lines, with `f` applied to each line. A line that `f`

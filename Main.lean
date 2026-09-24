@@ -16,8 +16,7 @@ def main (args : List String) : IO UInt32 := do
   | some [year, day, part] =>
     match solutions.find? fun e => e.year == year && e.day == day && e.part == part with
     | some entry =>
-      let raw ← (← IO.getStdin).readToEnd
-      let input := if raw.endsWith "\n" then (raw.dropEnd 1).toString else raw
+      let input ← (← IO.getStdin).readToEnd
       match entry.solve input with
       | .ok answer =>
         IO.println answer

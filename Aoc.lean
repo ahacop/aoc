@@ -13,6 +13,7 @@ import Aoc.Y2020.Day01
 import Aoc.Y2022.Day01
 import Aoc.Y2023.Day01
 import Aoc.Y2024.Day01
+import Aoc.Y2025.Day01
 
 namespace Aoc
 
@@ -34,7 +35,9 @@ def solutions : List Entry := [
   { year := 2023, day := 1, part := 1, solve := Y2023.Day01.part1 },
   { year := 2023, day := 1, part := 2, solve := Y2023.Day01.part2 },
   { year := 2024, day := 1, part := 1, solve := Y2024.Day01.part1 },
-  { year := 2024, day := 1, part := 2, solve := Y2024.Day01.part2 }
+  { year := 2024, day := 1, part := 2, solve := Y2024.Day01.part2 },
+  { year := 2025, day := 1, part := 1, solve := Y2025.Day01.part1 },
+  { year := 2025, day := 1, part := 2, solve := Y2025.Day01.part2 }
 ]
 
 end Aoc

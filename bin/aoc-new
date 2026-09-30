@@ -20,17 +20,27 @@ if [[ -e "$file" ]]; then
 else
   cat > "$file" <<LEAN
 import Aoc.Core
+import Std.Internal.Parsec
+
+open Std.Internal.Parsec String
 
 namespace Aoc.Y$year.Day$day
 
-def part1 (_input : String) : Except String String :=
-  pure ""
+def parser : Parser _ :=
+  sorry
 
-def part2 (_input : String) : Except String String :=
-  pure ""
+def part1 (input : String) : Except String String := do
+  let parsed <- parser.run input
+  sorry
 
-#guard part1 "" matches .ok ""
-#guard part2 "" matches .ok ""
+def part2 (input : String) : Except String String := do
+  let parsed <- parser.run input
+  sorry
+
+def example1 : String := sorry
+
+#guard part1 example1 matches .ok ""
+#guard part2 example1 matches .ok ""
 
 end Aoc.Y$year.Day$day
 LEAN

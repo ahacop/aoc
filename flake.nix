@@ -3,10 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    aoc-cli = {
-      url = "github:ahacop/aoc-cli";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    aoc-cli.url = "github:ahacop/aoc-cli";
   };
 
   outputs =

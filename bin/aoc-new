@@ -26,18 +26,18 @@ open Std.Internal.Parsec String
 
 namespace Aoc.Y$year.Day$day
 
-def parser : Parser _ :=
-  sorry
+def parser : Parser Unit :=
+  pure ()
 
 def part1 (input : String) : Except String String := do
-  let parsed <- parser.run input
-  sorry
+  let _parsed <- parser.run input
+  pure ""
 
 def part2 (input : String) : Except String String := do
-  let parsed <- parser.run input
-  sorry
+  let _parsed <- parser.run input
+  pure ""
 
-def example1 : String := sorry
+def example1 : String := ""
 
 #guard part1 example1 matches .ok ""
 #guard part2 example1 matches .ok ""

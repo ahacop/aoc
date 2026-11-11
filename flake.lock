@@ -19,6 +19,23 @@
         "type": "github"
       }
     },
+    "lean-fmt-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1791918696,
+        "narHash": "sha256-jIgeAE5km36uFre/EPymroFNSt2ixM7v7qrM13QBD7g=",
+        "owner": "jcreinhold",
+        "repo": "lean-fmt",
+        "rev": "57c2390e5c27afd4e89ff1c7e497bcee6c69addd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jcreinhold",
+        "ref": "v4.35.0",
+        "repo": "lean-fmt",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1793726008,
@@ -54,6 +71,7 @@
     "root": {
       "inputs": {
         "aoc-cli": "aoc-cli",
+        "lean-fmt-src": "lean-fmt-src",
         "nixpkgs": "nixpkgs_2"
       }
     },

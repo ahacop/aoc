@@ -7,6 +7,7 @@ import Aoc.Core
 import Aoc.Y2015.Day01
 import Aoc.Y2015.Day02
 import Aoc.Y2016.Day01
+import Aoc.Y2016.Day02
 import Aoc.Y2017.Day01
 import Aoc.Y2018.Day01
 import Aoc.Y2019.Day01
@@ -25,6 +26,8 @@ def solutions : List Entry := [
   { year := 2015, day := 2, part := 2, solve := Y2015.Day02.part2 },
   { year := 2016, day := 1, part := 1, solve := Y2016.Day01.part1 },
   { year := 2016, day := 1, part := 2, solve := Y2016.Day01.part2 },
+  { year := 2016, day := 2, part := 1, solve := Y2016.Day02.part1 },
+  { year := 2016, day := 2, part := 2, solve := Y2016.Day02.part2 },
   { year := 2017, day := 1, part := 1, solve := Y2017.Day01.part1 },
   { year := 2017, day := 1, part := 2, solve := Y2017.Day01.part2 },
   { year := 2018, day := 1, part := 1, solve := Y2018.Day01.part1 },

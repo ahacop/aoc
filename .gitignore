@@ -1,3 +1,4 @@
+notes/
 .lean-fmt-cache/
 lean-toolchain
 /.lake/
